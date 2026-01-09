@@ -31,9 +31,7 @@ const Navbar = () => {
               <div className="w-8 h-8 bg-zinc-900 rounded-lg flex items-center justify-center">
                 <span className="text-white font-semibold text-base">P</span>
               </div>
-              <span className="text-lg font-semibold text-zinc-900">
-                Pulse
-              </span>
+              <span className="text-lg font-semibold text-zinc-900">Pulse</span>
             </Link>
           </div>
 
@@ -42,9 +40,15 @@ const Navbar = () => {
             {/* Connection status - subtle indicator */}
             <div className="flex items-center gap-1.5 px-2 py-1 rounded-md">
               {isConnected ? (
-                <div className="w-2 h-2 bg-emerald-500 rounded-full" title="Connected" />
+                <div
+                  className="w-2 h-2 bg-emerald-500 rounded-full"
+                  title="Connected"
+                />
               ) : (
-                <div className="w-2 h-2 bg-red-500 rounded-full" title="Disconnected" />
+                <div
+                  className="w-2 h-2 bg-red-500 rounded-full"
+                  title="Disconnected"
+                />
               )}
             </div>
 

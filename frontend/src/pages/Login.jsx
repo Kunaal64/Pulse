@@ -46,9 +46,7 @@ const Login = () => {
             <span className="text-white font-semibold text-xl">P</span>
           </div>
           <h1 className="text-2xl font-semibold text-zinc-900">Welcome back</h1>
-          <p className="text-zinc-500 mt-1 text-sm">
-            Sign in to your account
-          </p>
+          <p className="text-zinc-500 mt-1 text-sm">Sign in to your account</p>
         </div>
 
         {/* Login form */}

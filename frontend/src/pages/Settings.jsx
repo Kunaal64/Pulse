@@ -134,7 +134,9 @@ const Settings = () => {
                 </button>
               </div>
               <div>
-                <p className="font-medium text-zinc-900 text-sm">{user?.name}</p>
+                <p className="font-medium text-zinc-900 text-sm">
+                  {user?.name}
+                </p>
                 <p className="text-xs text-zinc-500">{user?.email}</p>
                 <span
                   className={`inline-flex items-center gap-1 mt-1 px-1.5 py-0.5 rounded text-[10px] font-medium ${
@@ -211,7 +213,12 @@ const Settings = () => {
             </div>
 
             <div className="flex justify-end">
-              <Button type="submit" icon={Save} loading={profileLoading} size="sm">
+              <Button
+                type="submit"
+                icon={Save}
+                loading={profileLoading}
+                size="sm"
+              >
                 Save Changes
               </Button>
             </div>
@@ -329,7 +336,12 @@ const Settings = () => {
             </div>
 
             <div className="flex justify-end">
-              <Button type="submit" icon={Lock} loading={passwordLoading} size="sm">
+              <Button
+                type="submit"
+                icon={Lock}
+                loading={passwordLoading}
+                size="sm"
+              >
                 Update Password
               </Button>
             </div>
@@ -388,7 +400,9 @@ const Settings = () => {
           <div className="p-5">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm font-medium text-zinc-900">Delete Account</p>
+                <p className="text-sm font-medium text-zinc-900">
+                  Delete Account
+                </p>
                 <p className="text-xs text-zinc-500">
                   Permanently delete your account and all associated data
                 </p>

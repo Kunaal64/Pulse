@@ -18,15 +18,16 @@ const Button = ({
     "inline-flex items-center justify-center font-medium rounded-lg transition-all duration-150 focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed active:scale-[0.98]";
 
   const variantClasses = {
-    primary:
-      "bg-zinc-900 text-white hover:bg-zinc-800 focus:ring-zinc-500",
+    primary: "bg-zinc-900 text-white hover:bg-zinc-800 focus:ring-zinc-500",
     secondary:
       "bg-zinc-100 text-zinc-900 hover:bg-zinc-200 focus:ring-zinc-400",
     danger: "bg-red-500 text-white hover:bg-red-600 focus:ring-red-400",
-    success: "bg-emerald-500 text-white hover:bg-emerald-600 focus:ring-emerald-400",
+    success:
+      "bg-emerald-500 text-white hover:bg-emerald-600 focus:ring-emerald-400",
     outline:
       "border border-zinc-200 bg-white text-zinc-700 hover:bg-zinc-50 hover:border-zinc-300 focus:ring-zinc-400",
-    ghost: "text-zinc-600 hover:bg-zinc-100 hover:text-zinc-900 focus:ring-zinc-400",
+    ghost:
+      "text-zinc-600 hover:bg-zinc-100 hover:text-zinc-900 focus:ring-zinc-400",
   };
 
   const sizeClasses = {

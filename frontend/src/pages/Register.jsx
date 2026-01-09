@@ -65,10 +65,10 @@ const Register = () => {
           <div className="inline-flex items-center justify-center w-12 h-12 bg-zinc-900 rounded-xl mb-4">
             <span className="text-white font-semibold text-xl">P</span>
           </div>
-          <h1 className="text-2xl font-semibold text-zinc-900">Create account</h1>
-          <p className="text-zinc-500 mt-1 text-sm">
-            Get started with Pulse
-          </p>
+          <h1 className="text-2xl font-semibold text-zinc-900">
+            Create account
+          </h1>
+          <p className="text-zinc-500 mt-1 text-sm">Get started with Pulse</p>
         </div>
 
         {/* Register form */}

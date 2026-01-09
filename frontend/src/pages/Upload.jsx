@@ -306,7 +306,9 @@ const Upload = () => {
                     <Film className="w-5 h-5 text-green-600" />
                   </div>
                   <div className="text-left">
-                    <p className="font-medium text-zinc-900 text-sm">{file.name}</p>
+                    <p className="font-medium text-zinc-900 text-sm">
+                      {file.name}
+                    </p>
                     <p className="text-xs text-zinc-500">
                       {formatFileSize(file.size)}
                     </p>
@@ -335,7 +337,9 @@ const Upload = () => {
                     ? "Drop your video here"
                     : "Drag & drop your video"}
                 </p>
-                <p className="text-zinc-500 text-sm mb-3">or click to browse files</p>
+                <p className="text-zinc-500 text-sm mb-3">
+                  or click to browse files
+                </p>
                 <p className="text-xs text-zinc-400">
                   MP4, WebM, MOV, AVI, MKV • Max 500MB
                 </p>

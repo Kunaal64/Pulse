@@ -46,10 +46,7 @@ const Modal = ({
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center">
       {/* Backdrop */}
-      <div
-        className="absolute inset-0 bg-zinc-900/40"
-        onClick={onClose}
-      />
+      <div className="absolute inset-0 bg-zinc-900/40" onClick={onClose} />
 
       {/* Modal */}
       <div

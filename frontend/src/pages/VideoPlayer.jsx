@@ -569,7 +569,12 @@ const VideoPlayer = () => {
                   >
                     Edit
                   </Button>
-                  <Button variant="danger" icon={Trash2} size="sm" onClick={handleDelete}>
+                  <Button
+                    variant="danger"
+                    icon={Trash2}
+                    size="sm"
+                    onClick={handleDelete}
+                  >
                     Delete
                   </Button>
                 </>
@@ -582,7 +587,9 @@ const VideoPlayer = () => {
         <div className="space-y-4">
           {/* Video details */}
           <div className="bg-white rounded-lg p-4 shadow-soft border border-zinc-200">
-            <h3 className="text-xs font-medium text-zinc-900 mb-3">Video Details</h3>
+            <h3 className="text-xs font-medium text-zinc-900 mb-3">
+              Video Details
+            </h3>
 
             <div className="space-y-2">
               <div className="flex justify-between text-xs">

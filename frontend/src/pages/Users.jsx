@@ -196,7 +196,9 @@ const Users = () => {
     return (
       <div className="text-center py-16">
         <Shield className="w-10 h-10 text-zinc-200 mx-auto mb-3" />
-        <h2 className="text-lg font-medium text-zinc-900 mb-1">Access Denied</h2>
+        <h2 className="text-lg font-medium text-zinc-900 mb-1">
+          Access Denied
+        </h2>
         <p className="text-zinc-500 text-sm">
           You don't have permission to access this page.
         </p>

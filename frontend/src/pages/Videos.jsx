@@ -154,7 +154,12 @@ const Videos = () => {
           </p>
         </div>
 
-        <Button onClick={fetchVideos} variant="secondary" icon={RefreshCw} size="sm">
+        <Button
+          onClick={fetchVideos}
+          variant="secondary"
+          icon={RefreshCw}
+          size="sm"
+        >
           Refresh
         </Button>
       </div>

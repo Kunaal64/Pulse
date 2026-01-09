@@ -130,7 +130,9 @@ const Dashboard = () => {
         <div className="bg-zinc-900 rounded-lg p-4 text-white">
           <div className="flex items-center justify-between">
             <Eye className="w-4 h-4 opacity-60" />
-            <span className="text-xl font-semibold">{stats?.totalViews || 0}</span>
+            <span className="text-xl font-semibold">
+              {stats?.totalViews || 0}
+            </span>
           </div>
           <p className="text-sm opacity-60 mt-1">Total Views</p>
         </div>
@@ -138,7 +140,9 @@ const Dashboard = () => {
         <div className="bg-zinc-800 rounded-lg p-4 text-white">
           <div className="flex items-center justify-between">
             <HardDrive className="w-4 h-4 opacity-60" />
-            <span className="text-xl font-semibold">{formatBytes(stats?.totalSize)}</span>
+            <span className="text-xl font-semibold">
+              {formatBytes(stats?.totalSize)}
+            </span>
           </div>
           <p className="text-sm opacity-60 mt-1">Storage Used</p>
         </div>

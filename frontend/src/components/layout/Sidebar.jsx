@@ -47,30 +47,10 @@ const Sidebar = () => {
   ];
 
   return (
-    <aside className="fixed left-0 top-16 h-[calc(100vh-4rem)] w-64 bg-white border-r border-gray-200 overflow-y-auto">
-      <div className="p-4">
-        {/* User info card */}
-        <div className="bg-gradient-to-br from-primary-50 to-primary-100 rounded-xl p-4 mb-6">
-          <div className="flex items-center gap-3">
-            <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center shadow-sm">
-              <span className="text-primary-700 font-bold text-lg">
-                {user?.name?.charAt(0).toUpperCase()}
-              </span>
-            </div>
-            <div>
-              <p className="font-medium text-gray-900">{user?.name}</p>
-              <div className="flex items-center gap-1 mt-1">
-                <Shield className="w-3 h-3 text-primary-600" />
-                <span className="text-xs text-primary-700 capitalize font-medium">
-                  {user?.role}
-                </span>
-              </div>
-            </div>
-          </div>
-        </div>
-
+    <aside className="fixed left-0 top-14 h-[calc(100vh-3.5rem)] w-56 bg-white border-r border-zinc-200 overflow-y-auto">
+      <div className="p-3">
         {/* Navigation */}
-        <nav className="space-y-1">
+        <nav className="space-y-0.5">
           {navItems
             .filter((item) => item.show)
             .map((item) => (
@@ -78,40 +58,30 @@ const Sidebar = () => {
                 key={item.path}
                 to={item.path}
                 className={({ isActive }) =>
-                  `flex items-center gap-3 px-4 py-3 rounded-lg transition-all duration-200 ${
+                  `flex items-center gap-2.5 px-3 py-2 rounded-lg transition-all duration-150 text-sm ${
                     isActive
-                      ? "bg-primary-50 text-primary-700 font-medium"
-                      : "text-gray-600 hover:bg-gray-50 hover:text-gray-900"
+                      ? "bg-zinc-100 text-zinc-900 font-medium"
+                      : "text-zinc-600 hover:bg-zinc-50 hover:text-zinc-900"
                   }`
                 }
               >
-                <item.icon className="w-5 h-5" />
+                <item.icon className="w-4 h-4" />
                 <span>{item.name}</span>
               </NavLink>
             ))}
         </nav>
 
-        {/* Stats summary */}
-        <div className="mt-8 pt-6 border-t border-gray-200">
-          <div className="flex items-center gap-2 text-gray-500 mb-4">
-            <BarChart3 className="w-4 h-4" />
-            <span className="text-sm font-medium">Quick Stats</span>
-          </div>
-          <div className="space-y-3">
-            <div className="flex justify-between text-sm">
-              <span className="text-gray-500">Organization</span>
-              <span className="font-medium text-gray-900">
-                {user?.organization}
+        {/* User info - minimal */}
+        <div className="mt-6 pt-4 border-t border-zinc-100">
+          <div className="flex items-center gap-2.5 px-2">
+            <div className="w-8 h-8 bg-zinc-100 rounded-full flex items-center justify-center">
+              <span className="text-zinc-700 font-medium text-sm">
+                {user?.name?.charAt(0).toUpperCase()}
               </span>
             </div>
-            <div className="flex justify-between text-sm">
-              <span className="text-gray-500">Member since</span>
-              <span className="font-medium text-gray-900">
-                {new Date(user?.createdAt).toLocaleDateString("en-US", {
-                  month: "short",
-                  year: "numeric",
-                })}
-              </span>
+            <div className="flex-1 min-w-0">
+              <p className="text-sm font-medium text-zinc-900 truncate">{user?.name}</p>
+              <p className="text-xs text-zinc-500 capitalize">{user?.role}</p>
             </div>
           </div>
         </div>

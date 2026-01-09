@@ -36,10 +36,10 @@ const Modal = ({
   if (!isOpen) return null;
 
   const sizeClasses = {
-    sm: "max-w-md",
-    md: "max-w-lg",
-    lg: "max-w-2xl",
-    xl: "max-w-4xl",
+    sm: "max-w-sm",
+    md: "max-w-md",
+    lg: "max-w-xl",
+    xl: "max-w-3xl",
     full: "max-w-full mx-4",
   };
 
@@ -47,33 +47,33 @@ const Modal = ({
     <div className="fixed inset-0 z-50 flex items-center justify-center">
       {/* Backdrop */}
       <div
-        className="absolute inset-0 bg-black/50 backdrop-blur-sm"
+        className="absolute inset-0 bg-zinc-900/40"
         onClick={onClose}
       />
 
       {/* Modal */}
       <div
-        className={`relative bg-white rounded-xl shadow-xl w-full ${sizeClasses[size]} mx-4 max-h-[90vh] overflow-hidden fade-in`}
+        className={`relative bg-white rounded-lg shadow-medium w-full ${sizeClasses[size]} mx-4 max-h-[85vh] overflow-hidden fade-in`}
       >
         {/* Header */}
         {(title || showCloseButton) && (
-          <div className="flex items-center justify-between px-6 py-4 border-b border-gray-200">
+          <div className="flex items-center justify-between px-5 py-3 border-b border-zinc-100">
             {title && (
-              <h2 className="text-xl font-semibold text-gray-900">{title}</h2>
+              <h2 className="text-base font-medium text-zinc-900">{title}</h2>
             )}
             {showCloseButton && (
               <button
                 onClick={onClose}
-                className="p-2 hover:bg-gray-100 rounded-lg transition-colors ml-auto"
+                className="p-1.5 hover:bg-zinc-100 rounded transition-colors ml-auto"
               >
-                <X className="w-5 h-5 text-gray-500" />
+                <X className="w-4 h-4 text-zinc-400" />
               </button>
             )}
           </div>
         )}
 
         {/* Content */}
-        <div className="overflow-y-auto max-h-[calc(90vh-80px)]">
+        <div className="overflow-y-auto max-h-[calc(85vh-56px)]">
           {children}
         </div>
       </div>

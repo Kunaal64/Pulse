@@ -10,9 +10,6 @@ import {
   Shield,
   Camera,
   Save,
-  Bell,
-  Moon,
-  Globe,
   Eye,
   EyeOff,
 } from "lucide-react";
@@ -44,9 +41,6 @@ const Settings = () => {
   // Preferences
   const [preferences, setPreferences] = useState({
     emailNotifications: true,
-    pushNotifications: false,
-    darkMode: false,
-    language: "en",
   });
 
   const handleProfileUpdate = async (e) => {
@@ -104,105 +98,102 @@ const Settings = () => {
   };
 
   return (
-    <div className="max-w-4xl mx-auto">
+    <div className="max-w-3xl mx-auto">
       {/* Header */}
-      <div className="mb-8">
-        <h1 className="text-3xl font-bold text-gray-900">Settings</h1>
-        <p className="text-gray-500 mt-1">
+      <div className="mb-6">
+        <h1 className="text-2xl font-semibold text-zinc-900">Settings</h1>
+        <p className="text-zinc-500 text-sm mt-0.5">
           Manage your account settings and preferences
         </p>
       </div>
 
-      <div className="space-y-8">
+      <div className="space-y-5">
         {/* Profile Section */}
-        <section className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
-          <div className="p-6 border-b border-gray-200">
-            <h2 className="text-lg font-semibold text-gray-900 flex items-center gap-2">
-              <User className="w-5 h-5" />
+        <section className="bg-white rounded-lg shadow-soft border border-zinc-200 overflow-hidden">
+          <div className="px-5 py-4 border-b border-zinc-100">
+            <h2 className="text-sm font-medium text-zinc-900 flex items-center gap-2">
+              <User className="w-4 h-4" />
               Profile Information
             </h2>
-            <p className="text-sm text-gray-500 mt-1">
-              Update your personal information and email address
-            </p>
           </div>
 
-          <form onSubmit={handleProfileUpdate} className="p-6 space-y-6">
+          <form onSubmit={handleProfileUpdate} className="p-5 space-y-4">
             {/* Avatar */}
-            <div className="flex items-center gap-6">
+            <div className="flex items-center gap-4">
               <div className="relative">
-                <div className="w-20 h-20 rounded-full bg-primary-100 flex items-center justify-center">
-                  <span className="text-primary-600 font-bold text-2xl">
+                <div className="w-14 h-14 rounded-full bg-zinc-100 flex items-center justify-center">
+                  <span className="text-zinc-600 font-medium text-lg">
                     {user?.name?.charAt(0).toUpperCase() || "U"}
                   </span>
                 </div>
                 <button
                   type="button"
-                  className="absolute bottom-0 right-0 p-1.5 bg-white border border-gray-200 rounded-full shadow-sm hover:bg-gray-50"
+                  className="absolute bottom-0 right-0 p-1 bg-white border border-zinc-200 rounded-full shadow-soft hover:bg-zinc-50"
                 >
-                  <Camera className="w-4 h-4 text-gray-600" />
+                  <Camera className="w-3 h-3 text-zinc-500" />
                 </button>
               </div>
               <div>
-                <p className="font-medium text-gray-900">{user?.name}</p>
-                <p className="text-sm text-gray-500">{user?.email}</p>
+                <p className="font-medium text-zinc-900 text-sm">{user?.name}</p>
+                <p className="text-xs text-zinc-500">{user?.email}</p>
                 <span
-                  className={`inline-flex items-center gap-1 mt-1 px-2 py-0.5 rounded-full text-xs font-medium ${
+                  className={`inline-flex items-center gap-1 mt-1 px-1.5 py-0.5 rounded text-[10px] font-medium ${
                     user?.role === "admin"
-                      ? "bg-purple-100 text-purple-800"
+                      ? "bg-purple-50 text-purple-700"
                       : user?.role === "editor"
-                      ? "bg-blue-100 text-blue-800"
-                      : "bg-gray-100 text-gray-800"
+                      ? "bg-blue-50 text-blue-700"
+                      : "bg-zinc-100 text-zinc-600"
                   }`}
                 >
-                  <Shield className="w-3 h-3" />
+                  <Shield className="w-2.5 h-2.5" />
                   {user?.role}
                 </span>
               </div>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
+                <label className="block text-xs font-medium text-zinc-600 mb-1">
                   Full Name
                 </label>
                 <div className="relative">
-                  <User className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+                  <User className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-400" />
                   <input
                     type="text"
                     value={profileData.name}
                     onChange={(e) =>
                       setProfileData({ ...profileData, name: e.target.value })
                     }
-                    className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
+                    className="w-full pl-10 pr-3 py-2 text-sm border border-zinc-200 rounded-lg focus:ring-1 focus:ring-zinc-400 focus:border-zinc-400"
                     required
                   />
                 </div>
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
+                <label className="block text-xs font-medium text-zinc-600 mb-1">
                   Email Address
                 </label>
                 <div className="relative">
-                  <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+                  <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-400" />
                   <input
                     type="email"
                     value={profileData.email}
                     onChange={(e) =>
                       setProfileData({ ...profileData, email: e.target.value })
                     }
-                    className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
+                    className="w-full pl-10 pr-3 py-2 text-sm border border-zinc-200 rounded-lg focus:ring-1 focus:ring-zinc-400 focus:border-zinc-400"
                     required
                   />
                 </div>
               </div>
 
               <div className="md:col-span-2">
-                <label className="block text-sm font-medium text-gray-700 mb-1">
+                <label className="block text-xs font-medium text-zinc-600 mb-1">
                   Organization
                 </label>
                 <div className="relative">
-                  <Building className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+                  <Building className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-400" />
                   <input
                     type="text"
                     value={profileData.organization}
@@ -212,7 +203,7 @@ const Settings = () => {
                         organization: e.target.value,
                       })
                     }
-                    className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
+                    className="w-full pl-10 pr-3 py-2 text-sm border border-zinc-200 rounded-lg focus:ring-1 focus:ring-zinc-400 focus:border-zinc-400"
                     placeholder="Your organization (optional)"
                   />
                 </div>
@@ -220,7 +211,7 @@ const Settings = () => {
             </div>
 
             <div className="flex justify-end">
-              <Button type="submit" icon={Save} loading={profileLoading}>
+              <Button type="submit" icon={Save} loading={profileLoading} size="sm">
                 Save Changes
               </Button>
             </div>
@@ -228,24 +219,21 @@ const Settings = () => {
         </section>
 
         {/* Password Section */}
-        <section className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
-          <div className="p-6 border-b border-gray-200">
-            <h2 className="text-lg font-semibold text-gray-900 flex items-center gap-2">
-              <Lock className="w-5 h-5" />
+        <section className="bg-white rounded-lg shadow-soft border border-zinc-200 overflow-hidden">
+          <div className="px-5 py-4 border-b border-zinc-100">
+            <h2 className="text-sm font-medium text-zinc-900 flex items-center gap-2">
+              <Lock className="w-4 h-4" />
               Change Password
             </h2>
-            <p className="text-sm text-gray-500 mt-1">
-              Ensure your account is using a strong password
-            </p>
           </div>
 
-          <form onSubmit={handlePasswordChange} className="p-6 space-y-6">
+          <form onSubmit={handlePasswordChange} className="p-5 space-y-4">
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
+              <label className="block text-xs font-medium text-zinc-600 mb-1">
                 Current Password
               </label>
               <div className="relative">
-                <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+                <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-400" />
                 <input
                   type={showPasswords.current ? "text" : "password"}
                   value={passwordData.currentPassword}
@@ -255,30 +243,30 @@ const Settings = () => {
                       currentPassword: e.target.value,
                     })
                   }
-                  className="w-full pl-10 pr-10 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
+                  className="w-full pl-10 pr-10 py-2 text-sm border border-zinc-200 rounded-lg focus:ring-1 focus:ring-zinc-400 focus:border-zinc-400"
                   required
                 />
                 <button
                   type="button"
                   onClick={() => togglePasswordVisibility("current")}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-zinc-400 hover:text-zinc-600"
                 >
                   {showPasswords.current ? (
-                    <EyeOff className="w-5 h-5" />
+                    <EyeOff className="w-4 h-4" />
                   ) : (
-                    <Eye className="w-5 h-5" />
+                    <Eye className="w-4 h-4" />
                   )}
                 </button>
               </div>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
+                <label className="block text-xs font-medium text-zinc-600 mb-1">
                   New Password
                 </label>
                 <div className="relative">
-                  <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+                  <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-400" />
                   <input
                     type={showPasswords.new ? "text" : "password"}
                     value={passwordData.newPassword}
@@ -288,30 +276,30 @@ const Settings = () => {
                         newPassword: e.target.value,
                       })
                     }
-                    className="w-full pl-10 pr-10 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
+                    className="w-full pl-10 pr-10 py-2 text-sm border border-zinc-200 rounded-lg focus:ring-1 focus:ring-zinc-400 focus:border-zinc-400"
                     required
                     minLength={6}
                   />
                   <button
                     type="button"
                     onClick={() => togglePasswordVisibility("new")}
-                    className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
+                    className="absolute right-3 top-1/2 -translate-y-1/2 text-zinc-400 hover:text-zinc-600"
                   >
                     {showPasswords.new ? (
-                      <EyeOff className="w-5 h-5" />
+                      <EyeOff className="w-4 h-4" />
                     ) : (
-                      <Eye className="w-5 h-5" />
+                      <Eye className="w-4 h-4" />
                     )}
                   </button>
                 </div>
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
+                <label className="block text-xs font-medium text-zinc-600 mb-1">
                   Confirm New Password
                 </label>
                 <div className="relative">
-                  <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+                  <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-400" />
                   <input
                     type={showPasswords.confirm ? "text" : "password"}
                     value={passwordData.confirmPassword}
@@ -321,19 +309,19 @@ const Settings = () => {
                         confirmPassword: e.target.value,
                       })
                     }
-                    className="w-full pl-10 pr-10 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
+                    className="w-full pl-10 pr-10 py-2 text-sm border border-zinc-200 rounded-lg focus:ring-1 focus:ring-zinc-400 focus:border-zinc-400"
                     required
                     minLength={6}
                   />
                   <button
                     type="button"
                     onClick={() => togglePasswordVisibility("confirm")}
-                    className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
+                    className="absolute right-3 top-1/2 -translate-y-1/2 text-zinc-400 hover:text-zinc-600"
                   >
                     {showPasswords.confirm ? (
-                      <EyeOff className="w-5 h-5" />
+                      <EyeOff className="w-4 h-4" />
                     ) : (
-                      <Eye className="w-5 h-5" />
+                      <Eye className="w-4 h-4" />
                     )}
                   </button>
                 </div>
@@ -341,7 +329,7 @@ const Settings = () => {
             </div>
 
             <div className="flex justify-end">
-              <Button type="submit" icon={Lock} loading={passwordLoading}>
+              <Button type="submit" icon={Lock} loading={passwordLoading} size="sm">
                 Update Password
               </Button>
             </div>
@@ -349,29 +337,26 @@ const Settings = () => {
         </section>
 
         {/* Preferences Section */}
-        <section className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
-          <div className="p-6 border-b border-gray-200">
-            <h2 className="text-lg font-semibold text-gray-900 flex items-center gap-2">
-              <Bell className="w-5 h-5" />
+        <section className="bg-white rounded-lg shadow-soft border border-zinc-200 overflow-hidden">
+          <div className="px-5 py-4 border-b border-zinc-100">
+            <h2 className="text-sm font-medium text-zinc-900 flex items-center gap-2">
+              <Mail className="w-4 h-4" />
               Preferences
             </h2>
-            <p className="text-sm text-gray-500 mt-1">
-              Customize your experience
-            </p>
           </div>
 
-          <div className="p-6 space-y-6">
+          <div className="p-5 space-y-4">
             {/* Notifications */}
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-3">
-                <div className="p-2 bg-blue-100 rounded-lg">
-                  <Mail className="w-5 h-5 text-blue-600" />
+                <div className="p-1.5 bg-blue-50 rounded">
+                  <Mail className="w-4 h-4 text-blue-600" />
                 </div>
                 <div>
-                  <p className="font-medium text-gray-900">
+                  <p className="text-sm font-medium text-zinc-900">
                     Email Notifications
                   </p>
-                  <p className="text-sm text-gray-500">
+                  <p className="text-xs text-zinc-500">
                     Receive email updates about your videos
                   </p>
                 </div>
@@ -388,115 +373,29 @@ const Settings = () => {
                   }
                   className="sr-only peer"
                 />
-                <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-primary-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary-600"></div>
+                <div className="w-9 h-5 bg-zinc-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-zinc-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-zinc-900"></div>
               </label>
-            </div>
-
-            <div className="flex items-center justify-between">
-              <div className="flex items-center gap-3">
-                <div className="p-2 bg-green-100 rounded-lg">
-                  <Bell className="w-5 h-5 text-green-600" />
-                </div>
-                <div>
-                  <p className="font-medium text-gray-900">
-                    Push Notifications
-                  </p>
-                  <p className="text-sm text-gray-500">
-                    Receive real-time browser notifications
-                  </p>
-                </div>
-              </div>
-              <label className="relative inline-flex items-center cursor-pointer">
-                <input
-                  type="checkbox"
-                  checked={preferences.pushNotifications}
-                  onChange={(e) =>
-                    setPreferences({
-                      ...preferences,
-                      pushNotifications: e.target.checked,
-                    })
-                  }
-                  className="sr-only peer"
-                />
-                <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-primary-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary-600"></div>
-              </label>
-            </div>
-
-            {/* Theme */}
-            <div className="flex items-center justify-between">
-              <div className="flex items-center gap-3">
-                <div className="p-2 bg-purple-100 rounded-lg">
-                  <Moon className="w-5 h-5 text-purple-600" />
-                </div>
-                <div>
-                  <p className="font-medium text-gray-900">Dark Mode</p>
-                  <p className="text-sm text-gray-500">Switch to dark theme</p>
-                </div>
-              </div>
-              <label className="relative inline-flex items-center cursor-pointer">
-                <input
-                  type="checkbox"
-                  checked={preferences.darkMode}
-                  onChange={(e) =>
-                    setPreferences({
-                      ...preferences,
-                      darkMode: e.target.checked,
-                    })
-                  }
-                  className="sr-only peer"
-                />
-                <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-primary-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary-600"></div>
-              </label>
-            </div>
-
-            {/* Language */}
-            <div className="flex items-center justify-between">
-              <div className="flex items-center gap-3">
-                <div className="p-2 bg-orange-100 rounded-lg">
-                  <Globe className="w-5 h-5 text-orange-600" />
-                </div>
-                <div>
-                  <p className="font-medium text-gray-900">Language</p>
-                  <p className="text-sm text-gray-500">
-                    Select your preferred language
-                  </p>
-                </div>
-              </div>
-              <select
-                value={preferences.language}
-                onChange={(e) =>
-                  setPreferences({ ...preferences, language: e.target.value })
-                }
-                className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
-              >
-                <option value="en">English</option>
-                <option value="es">Español</option>
-                <option value="fr">Français</option>
-                <option value="de">Deutsch</option>
-              </select>
             </div>
           </div>
         </section>
 
         {/* Danger Zone */}
-        <section className="bg-white rounded-xl shadow-sm border border-red-200 overflow-hidden">
-          <div className="p-6 border-b border-red-200 bg-red-50">
-            <h2 className="text-lg font-semibold text-red-900">Danger Zone</h2>
-            <p className="text-sm text-red-700 mt-1">
-              Irreversible and destructive actions
-            </p>
+        <section className="bg-white rounded-lg shadow-soft border border-red-100 overflow-hidden">
+          <div className="px-5 py-3 border-b border-red-100 bg-red-50">
+            <h2 className="text-sm font-medium text-red-800">Danger Zone</h2>
           </div>
 
-          <div className="p-6">
+          <div className="p-5">
             <div className="flex items-center justify-between">
               <div>
-                <p className="font-medium text-gray-900">Delete Account</p>
-                <p className="text-sm text-gray-500">
+                <p className="text-sm font-medium text-zinc-900">Delete Account</p>
+                <p className="text-xs text-zinc-500">
                   Permanently delete your account and all associated data
                 </p>
               </div>
               <Button
                 variant="danger"
+                size="sm"
                 onClick={() => {
                   if (
                     window.confirm(

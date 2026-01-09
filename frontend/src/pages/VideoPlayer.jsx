@@ -258,22 +258,22 @@ const VideoPlayer = () => {
   if (loading) {
     return (
       <div className="flex items-center justify-center min-h-[60vh]">
-        <div className="w-8 h-8 border-4 border-primary-500 border-t-transparent rounded-full spinner"></div>
+        <div className="w-6 h-6 border-2 border-zinc-300 border-t-zinc-600 rounded-full spinner"></div>
       </div>
     );
   }
 
   if (error || !video) {
     return (
-      <div className="text-center py-20">
-        <h2 className="text-2xl font-bold text-gray-900 mb-2">
+      <div className="text-center py-16">
+        <h2 className="text-lg font-medium text-zinc-900 mb-1">
           Video not found
         </h2>
-        <p className="text-gray-500 mb-6">
+        <p className="text-zinc-500 text-sm mb-4">
           {error || "The video you are looking for does not exist."}
         </p>
         <Link to="/videos">
-          <Button>Back to Videos</Button>
+          <Button size="sm">Back to Videos</Button>
         </Link>
       </div>
     );
@@ -287,20 +287,20 @@ const VideoPlayer = () => {
   );
 
   return (
-    <div className="max-w-6xl mx-auto">
+    <div className="max-w-5xl mx-auto">
       {/* Back button */}
       <Link
         to="/videos"
-        className="inline-flex items-center gap-2 text-gray-600 hover:text-gray-900 mb-6 transition-colors"
+        className="inline-flex items-center gap-1.5 text-zinc-500 hover:text-zinc-900 mb-4 text-sm transition-colors"
       >
-        <ArrowLeft className="w-5 h-5" />
+        <ArrowLeft className="w-4 h-4" />
         Back to videos
       </Link>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-5">
         {/* Video player */}
         <div className="lg:col-span-2">
-          <div className="bg-black rounded-xl overflow-hidden">
+          <div className="bg-black rounded-lg overflow-hidden">
             {video.status === "completed" ? (
               <div className="relative group">
                 <video
@@ -324,7 +324,7 @@ const VideoPlayer = () => {
                 {/* Loading spinner overlay */}
                 {isVideoLoading && (
                   <div className="absolute inset-0 flex items-center justify-center bg-black/50">
-                    <div className="w-12 h-12 border-4 border-white border-t-transparent rounded-full spinner" />
+                    <div className="w-8 h-8 border-2 border-white border-t-transparent rounded-full spinner" />
                   </div>
                 )}
 
@@ -334,24 +334,24 @@ const VideoPlayer = () => {
                     className="absolute inset-0 flex items-center justify-center cursor-pointer"
                     onClick={togglePlay}
                   >
-                    <div className="w-20 h-20 bg-white/20 rounded-full flex items-center justify-center backdrop-blur-sm hover:bg-white/30 transition-colors">
-                      <Play className="w-10 h-10 text-white ml-1" />
+                    <div className="w-14 h-14 bg-white/20 rounded-full flex items-center justify-center backdrop-blur-sm hover:bg-white/30 transition-colors">
+                      <Play className="w-7 h-7 text-white ml-0.5" />
                     </div>
                   </div>
                 )}
 
                 {/* Custom controls */}
-                <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-4 opacity-0 group-hover:opacity-100 transition-opacity">
+                <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-3 opacity-0 group-hover:opacity-100 transition-opacity">
                   {/* Progress bar with buffer indicator */}
-                  <div className="relative h-1 bg-gray-600 rounded-lg mb-3 cursor-pointer">
+                  <div className="relative h-1 bg-zinc-600 rounded mb-2 cursor-pointer">
                     {/* Buffered progress */}
                     <div
-                      className="absolute h-full bg-gray-400 rounded-lg"
+                      className="absolute h-full bg-zinc-400 rounded"
                       style={{ width: `${buffered}%` }}
                     />
                     {/* Played progress */}
                     <div
-                      className="absolute h-full bg-primary-500 rounded-lg"
+                      className="absolute h-full bg-white rounded"
                       style={{
                         width: `${
                           duration ? (currentTime / duration) * 100 : 0
@@ -369,27 +369,27 @@ const VideoPlayer = () => {
                   </div>
 
                   <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-4">
+                    <div className="flex items-center gap-3">
                       <button
                         onClick={togglePlay}
-                        className="text-white hover:text-primary-400"
+                        className="text-white hover:text-zinc-300"
                       >
                         {isPlaying ? (
-                          <Pause className="w-6 h-6" />
+                          <Pause className="w-5 h-5" />
                         ) : (
-                          <Play className="w-6 h-6" />
+                          <Play className="w-5 h-5" />
                         )}
                       </button>
 
                       <div className="flex items-center gap-2">
                         <button
                           onClick={toggleMute}
-                          className="text-white hover:text-primary-400"
+                          className="text-white hover:text-zinc-300"
                         >
                           {isMuted ? (
-                            <VolumeX className="w-5 h-5" />
+                            <VolumeX className="w-4 h-4" />
                           ) : (
-                            <Volume2 className="w-5 h-5" />
+                            <Volume2 className="w-4 h-4" />
                           )}
                         </button>
                         <input
@@ -399,63 +399,63 @@ const VideoPlayer = () => {
                           step="0.1"
                           value={isMuted ? 0 : volume}
                           onChange={handleVolumeChange}
-                          className="w-20 h-1 bg-gray-600 rounded-lg appearance-none cursor-pointer"
+                          className="w-16 h-1 bg-zinc-600 rounded appearance-none cursor-pointer"
                         />
                       </div>
 
-                      <span className="text-white text-sm">
+                      <span className="text-white text-xs">
                         {formatTime(currentTime)} / {formatTime(duration)}
                       </span>
                     </div>
 
-                    <div className="flex items-center gap-4">
+                    <div className="flex items-center gap-3">
                       {/* Playback speed */}
                       <select
                         value={playbackRate}
                         onChange={(e) =>
                           handlePlaybackRateChange(parseFloat(e.target.value))
                         }
-                        className="bg-transparent text-white text-sm border border-gray-600 rounded px-2 py-1 cursor-pointer focus:outline-none"
+                        className="bg-transparent text-white text-xs border border-zinc-600 rounded px-1.5 py-0.5 cursor-pointer focus:outline-none"
                       >
-                        <option value="0.5" className="bg-gray-900">
+                        <option value="0.5" className="bg-zinc-900">
                           0.5x
                         </option>
-                        <option value="0.75" className="bg-gray-900">
+                        <option value="0.75" className="bg-zinc-900">
                           0.75x
                         </option>
-                        <option value="1" className="bg-gray-900">
+                        <option value="1" className="bg-zinc-900">
                           1x
                         </option>
-                        <option value="1.25" className="bg-gray-900">
+                        <option value="1.25" className="bg-zinc-900">
                           1.25x
                         </option>
-                        <option value="1.5" className="bg-gray-900">
+                        <option value="1.5" className="bg-zinc-900">
                           1.5x
                         </option>
-                        <option value="2" className="bg-gray-900">
+                        <option value="2" className="bg-zinc-900">
                           2x
                         </option>
                       </select>
 
                       <button
                         onClick={toggleFullscreen}
-                        className="text-white hover:text-primary-400"
+                        className="text-white hover:text-zinc-300"
                       >
-                        <Maximize className="w-5 h-5" />
+                        <Maximize className="w-4 h-4" />
                       </button>
                     </div>
                   </div>
                 </div>
               </div>
             ) : (
-              <div className="aspect-video flex items-center justify-center bg-gray-900">
+              <div className="aspect-video flex items-center justify-center bg-zinc-900">
                 {isProcessing ? (
-                  <div className="text-center text-white p-8">
-                    <div className="w-12 h-12 border-4 border-white border-t-transparent rounded-full spinner mx-auto mb-4" />
-                    <h3 className="text-lg font-medium mb-2">
+                  <div className="text-center text-white p-6">
+                    <div className="w-8 h-8 border-2 border-white border-t-transparent rounded-full spinner mx-auto mb-3" />
+                    <h3 className="text-sm font-medium mb-1">
                       Processing Video
                     </h3>
-                    <p className="text-gray-400 mb-4">
+                    <p className="text-zinc-400 text-xs mb-3">
                       {videoUpdate?.message ||
                         video.processingMessage ||
                         "Please wait..."}
@@ -466,18 +466,18 @@ const VideoPlayer = () => {
                           videoUpdate?.progress || video.processingProgress || 0
                         }
                         showPercentage
-                        size="md"
+                        size="sm"
                         animated
                       />
                     </div>
                   </div>
                 ) : (
                   <div className="text-center text-white">
-                    <AlertTriangle className="w-12 h-12 mx-auto mb-4 text-yellow-500" />
-                    <h3 className="text-lg font-medium mb-2">
+                    <AlertTriangle className="w-8 h-8 mx-auto mb-3 text-amber-500" />
+                    <h3 className="text-sm font-medium mb-1">
                       Video Not Available
                     </h3>
-                    <p className="text-gray-400">
+                    <p className="text-zinc-400 text-xs">
                       {video.errorMessage || "Video processing failed"}
                     </p>
                   </div>
@@ -488,69 +488,64 @@ const VideoPlayer = () => {
 
           {/* Keyboard shortcuts hint */}
           {video.status === "completed" && (
-            <div className="mt-3 text-xs text-gray-400 flex flex-wrap gap-4">
+            <div className="mt-2 text-[10px] text-zinc-400 flex flex-wrap gap-3">
               <span>
-                <kbd className="px-1 py-0.5 bg-gray-700 rounded text-gray-300">
+                <kbd className="px-1 py-0.5 bg-zinc-100 rounded text-zinc-500">
                   Space
                 </kbd>{" "}
                 Play/Pause
               </span>
               <span>
-                <kbd className="px-1 py-0.5 bg-gray-700 rounded text-gray-300">
+                <kbd className="px-1 py-0.5 bg-zinc-100 rounded text-zinc-500">
                   M
                 </kbd>{" "}
                 Mute
               </span>
               <span>
-                <kbd className="px-1 py-0.5 bg-gray-700 rounded text-gray-300">
+                <kbd className="px-1 py-0.5 bg-zinc-100 rounded text-zinc-500">
                   F
                 </kbd>{" "}
                 Fullscreen
               </span>
               <span>
-                <kbd className="px-1 py-0.5 bg-gray-700 rounded text-gray-300">
+                <kbd className="px-1 py-0.5 bg-zinc-100 rounded text-zinc-500">
                   ←/→
                 </kbd>{" "}
                 Seek 5s
-              </span>
-              <span>
-                <kbd className="px-1 py-0.5 bg-gray-700 rounded text-gray-300">
-                  ↑/↓
-                </kbd>{" "}
-                Volume
               </span>
             </div>
           )}
 
           {/* Video info */}
-          <div className="mt-6">
-            <h1 className="text-2xl font-bold text-gray-900">{video.title}</h1>
+          <div className="mt-4">
+            <h1 className="text-lg font-medium text-zinc-900">{video.title}</h1>
 
-            <div className="flex flex-wrap items-center gap-4 mt-4">
-              <StatusBadge status={video.status} />
+            <div className="flex flex-wrap items-center gap-2 mt-2">
+              <StatusBadge status={video.status} size="sm" />
               {video.sensitivityStatus !== "pending" && (
-                <StatusBadge status={video.sensitivityStatus} />
+                <StatusBadge status={video.sensitivityStatus} size="sm" />
               )}
-              <span className="flex items-center gap-1 text-gray-500 text-sm">
-                <Eye className="w-4 h-4" />
+              <span className="flex items-center gap-1 text-zinc-400 text-xs">
+                <Eye className="w-3 h-3" />
                 {video.views} views
               </span>
-              <span className="flex items-center gap-1 text-gray-500 text-sm">
-                <Calendar className="w-4 h-4" />
+              <span className="flex items-center gap-1 text-zinc-400 text-xs">
+                <Calendar className="w-3 h-3" />
                 {formatDate(video.createdAt)}
               </span>
             </div>
 
             {video.description && (
-              <p className="mt-4 text-gray-600">{video.description}</p>
+              <p className="mt-3 text-zinc-600 text-sm">{video.description}</p>
             )}
 
             {/* Actions */}
-            <div className="flex flex-wrap gap-3 mt-6">
+            <div className="flex flex-wrap gap-2 mt-4">
               {video.status === "completed" && (
                 <Button
                   variant="secondary"
                   icon={Download}
+                  size="sm"
                   onClick={() =>
                     window.open(
                       `${import.meta.env.VITE_API_URL}/videos/${
@@ -569,11 +564,12 @@ const VideoPlayer = () => {
                   <Button
                     variant="secondary"
                     icon={Edit}
+                    size="sm"
                     onClick={() => navigate(`/videos?edit=${video._id}`)}
                   >
                     Edit
                   </Button>
-                  <Button variant="danger" icon={Trash2} onClick={handleDelete}>
+                  <Button variant="danger" icon={Trash2} size="sm" onClick={handleDelete}>
                     Delete
                   </Button>
                 </>
@@ -583,68 +579,68 @@ const VideoPlayer = () => {
         </div>
 
         {/* Sidebar */}
-        <div className="space-y-6">
+        <div className="space-y-4">
           {/* Video details */}
-          <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-200">
-            <h3 className="font-semibold text-gray-900 mb-4">Video Details</h3>
+          <div className="bg-white rounded-lg p-4 shadow-soft border border-zinc-200">
+            <h3 className="text-xs font-medium text-zinc-900 mb-3">Video Details</h3>
 
-            <div className="space-y-3">
-              <div className="flex justify-between text-sm">
-                <span className="text-gray-500">Uploaded by</span>
-                <span className="font-medium text-gray-900">
+            <div className="space-y-2">
+              <div className="flex justify-between text-xs">
+                <span className="text-zinc-500">Uploaded by</span>
+                <span className="font-medium text-zinc-900">
                   {video.uploadedBy?.name || "Unknown"}
                 </span>
               </div>
 
-              <div className="flex justify-between text-sm">
-                <span className="text-gray-500">Duration</span>
-                <span className="font-medium text-gray-900">
+              <div className="flex justify-between text-xs">
+                <span className="text-zinc-500">Duration</span>
+                <span className="font-medium text-zinc-900">
                   {video.duration ? formatTime(video.duration) : "--:--"}
                 </span>
               </div>
 
-              <div className="flex justify-between text-sm">
-                <span className="text-gray-500">Size</span>
-                <span className="font-medium text-gray-900">
+              <div className="flex justify-between text-xs">
+                <span className="text-zinc-500">Size</span>
+                <span className="font-medium text-zinc-900">
                   {formatSize(video.size)}
                 </span>
               </div>
 
-              <div className="flex justify-between text-sm">
-                <span className="text-gray-500">Resolution</span>
-                <span className="font-medium text-gray-900">
+              <div className="flex justify-between text-xs">
+                <span className="text-zinc-500">Resolution</span>
+                <span className="font-medium text-zinc-900">
                   {video.resolution?.width && video.resolution?.height
                     ? `${video.resolution.width}x${video.resolution.height}`
                     : "Unknown"}
                 </span>
               </div>
 
-              <div className="flex justify-between text-sm">
-                <span className="text-gray-500">Category</span>
-                <span className="font-medium text-gray-900 capitalize">
+              <div className="flex justify-between text-xs">
+                <span className="text-zinc-500">Category</span>
+                <span className="font-medium text-zinc-900 capitalize">
                   {video.category || "Uncategorized"}
                 </span>
               </div>
 
-              <div className="flex justify-between text-sm">
-                <span className="text-gray-500">Visibility</span>
-                <span className="font-medium text-gray-900 capitalize">
+              <div className="flex justify-between text-xs">
+                <span className="text-zinc-500">Visibility</span>
+                <span className="font-medium text-zinc-900 capitalize">
                   {video.visibility}
                 </span>
               </div>
             </div>
 
             {video.tags?.length > 0 && (
-              <div className="mt-4 pt-4 border-t border-gray-200">
-                <span className="text-sm text-gray-500 flex items-center gap-1 mb-2">
-                  <Tag className="w-4 h-4" />
+              <div className="mt-3 pt-3 border-t border-zinc-100">
+                <span className="text-xs text-zinc-500 flex items-center gap-1 mb-1.5">
+                  <Tag className="w-3 h-3" />
                   Tags
                 </span>
-                <div className="flex flex-wrap gap-2">
+                <div className="flex flex-wrap gap-1">
                   {video.tags.map((tag, i) => (
                     <span
                       key={i}
-                      className="bg-gray-100 text-gray-700 px-2 py-1 rounded text-xs"
+                      className="bg-zinc-100 text-zinc-600 px-1.5 py-0.5 rounded text-[10px]"
                     >
                       {tag}
                     </span>
@@ -655,45 +651,45 @@ const VideoPlayer = () => {
           </div>
 
           {/* Sensitivity analysis */}
-          <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-200">
-            <div className="flex items-center justify-between mb-4">
-              <h3 className="font-semibold text-gray-900 flex items-center gap-2">
-                <Shield className="w-5 h-5" />
+          <div className="bg-white rounded-lg p-4 shadow-soft border border-zinc-200">
+            <div className="flex items-center justify-between mb-3">
+              <h3 className="text-xs font-medium text-zinc-900 flex items-center gap-1.5">
+                <Shield className="w-3.5 h-3.5" />
                 Sensitivity Analysis
               </h3>
               {user?.role === "admin" && video.status === "completed" && (
                 <button
                   onClick={handleReanalyze}
-                  className="text-primary-600 hover:text-primary-700 text-sm font-medium flex items-center gap-1"
+                  className="text-zinc-500 hover:text-zinc-900 text-[10px] flex items-center gap-1"
                 >
-                  <RefreshCw className="w-4 h-4" />
+                  <RefreshCw className="w-3 h-3" />
                   Reanalyze
                 </button>
               )}
             </div>
 
             {video.sensitivityStatus === "pending" ? (
-              <p className="text-gray-500 text-sm">Analysis pending...</p>
+              <p className="text-zinc-500 text-xs">Analysis pending...</p>
             ) : (
               <>
                 <div
-                  className={`p-4 rounded-lg mb-4 ${
+                  className={`p-3 rounded-lg mb-3 ${
                     video.sensitivityStatus === "safe"
                       ? "bg-green-50"
                       : "bg-red-50"
                   }`}
                 >
-                  <div className="flex items-center gap-2">
+                  <div className="flex items-center gap-1.5">
                     {video.sensitivityStatus === "safe" ? (
-                      <CheckCircle className="w-5 h-5 text-green-600" />
+                      <CheckCircle className="w-4 h-4 text-green-600" />
                     ) : (
-                      <AlertTriangle className="w-5 h-5 text-red-600" />
+                      <AlertTriangle className="w-4 h-4 text-red-600" />
                     )}
                     <span
-                      className={`font-medium ${
+                      className={`text-sm font-medium ${
                         video.sensitivityStatus === "safe"
-                          ? "text-green-800"
-                          : "text-red-800"
+                          ? "text-green-700"
+                          : "text-red-700"
                       }`}
                     >
                       {video.sensitivityStatus === "safe"
@@ -704,7 +700,7 @@ const VideoPlayer = () => {
 
                   {video.sensitivityScore !== null && (
                     <p
-                      className={`text-sm mt-1 ${
+                      className={`text-xs mt-1 ${
                         video.sensitivityStatus === "safe"
                           ? "text-green-600"
                           : "text-red-600"
@@ -717,13 +713,13 @@ const VideoPlayer = () => {
 
                 {video.sensitivityReasons?.length > 0 && (
                   <div>
-                    <p className="text-sm text-gray-500 mb-2">
+                    <p className="text-xs text-zinc-500 mb-1">
                       Analysis notes:
                     </p>
-                    <ul className="text-sm text-gray-700 space-y-1">
+                    <ul className="text-xs text-zinc-600 space-y-0.5">
                       {video.sensitivityReasons.map((reason, i) => (
-                        <li key={i} className="flex items-start gap-2">
-                          <span className="text-gray-400">•</span>
+                        <li key={i} className="flex items-start gap-1.5">
+                          <span className="text-zinc-400">•</span>
                           {reason}
                         </li>
                       ))}
@@ -732,34 +728,34 @@ const VideoPlayer = () => {
                 )}
 
                 {video.sensitivityDetails && (
-                  <div className="mt-4 pt-4 border-t border-gray-200">
-                    <p className="text-sm text-gray-500 mb-2">
+                  <div className="mt-3 pt-3 border-t border-zinc-100">
+                    <p className="text-xs text-zinc-500 mb-2">
                       Category scores:
                     </p>
-                    <div className="space-y-2">
+                    <div className="space-y-1.5">
                       {Object.entries(video.sensitivityDetails).map(
                         ([category, data]) => (
                           <div
                             key={category}
-                            className="flex items-center justify-between text-sm"
+                            className="flex items-center justify-between text-xs"
                           >
-                            <span className="text-gray-600 capitalize">
+                            <span className="text-zinc-600 capitalize">
                               {category}
                             </span>
-                            <div className="flex items-center gap-2">
-                              <div className="w-24 h-2 bg-gray-200 rounded-full overflow-hidden">
+                            <div className="flex items-center gap-1.5">
+                              <div className="w-16 h-1 bg-zinc-100 rounded-full overflow-hidden">
                                 <div
                                   className={`h-full ${
                                     data.score > 70
                                       ? "bg-red-500"
                                       : data.score > 40
-                                      ? "bg-yellow-500"
+                                      ? "bg-amber-500"
                                       : "bg-green-500"
                                   }`}
                                   style={{ width: `${data.score}%` }}
                                 />
                               </div>
-                              <span className="text-gray-900 font-medium w-8">
+                              <span className="text-zinc-900 font-medium w-6">
                                 {data.score}
                               </span>
                             </div>

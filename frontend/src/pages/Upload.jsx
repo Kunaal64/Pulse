@@ -143,39 +143,39 @@ const Upload = () => {
   const isReady = videoUpdate?.ready || uploadedVideo?.status === "completed";
 
   return (
-    <div className="max-w-3xl mx-auto">
-      <div className="mb-8">
-        <h1 className="text-3xl font-bold text-gray-900">Upload Video</h1>
-        <p className="text-gray-500 mt-2">
+    <div className="max-w-2xl mx-auto">
+      <div className="mb-6">
+        <h1 className="text-2xl font-semibold text-zinc-900">Upload Video</h1>
+        <p className="text-zinc-500 text-sm mt-1">
           Upload a video for sensitivity analysis and streaming
         </p>
       </div>
 
       {/* Upload complete state */}
       {uploadedVideo && (
-        <div className="bg-white rounded-xl p-8 shadow-sm border border-gray-200 mb-6">
-          <div className="text-center mb-6">
+        <div className="bg-white rounded-lg p-6 shadow-soft border border-zinc-200 mb-6">
+          <div className="text-center mb-5">
             {isReady ? (
               <>
-                <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <CheckCircle className="w-8 h-8 text-green-600" />
+                <div className="w-12 h-12 bg-green-50 rounded-full flex items-center justify-center mx-auto mb-3">
+                  <CheckCircle className="w-6 h-6 text-green-600" />
                 </div>
-                <h2 className="text-xl font-semibold text-gray-900">
-                  Video Ready!
+                <h2 className="text-lg font-medium text-zinc-900">
+                  Video Ready
                 </h2>
-                <p className="text-gray-500 mt-1">
+                <p className="text-zinc-500 text-sm mt-1">
                   Your video has been processed successfully
                 </p>
               </>
             ) : (
               <>
-                <div className="w-16 h-16 bg-primary-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <div className="w-8 h-8 border-3 border-primary-600 border-t-transparent rounded-full spinner" />
+                <div className="w-12 h-12 bg-zinc-100 rounded-full flex items-center justify-center mx-auto mb-3">
+                  <div className="w-5 h-5 border-2 border-zinc-600 border-t-transparent rounded-full spinner" />
                 </div>
-                <h2 className="text-xl font-semibold text-gray-900">
-                  Processing Video...
+                <h2 className="text-lg font-medium text-zinc-900">
+                  Processing Video
                 </h2>
-                <p className="text-gray-500 mt-1">
+                <p className="text-zinc-500 text-sm mt-1">
                   {processingMessage ||
                     "Please wait while we analyze your video"}
                 </p>
@@ -195,27 +195,26 @@ const Upload = () => {
 
           {videoUpdate?.sensitivityStatus && (
             <div
-              className={`p-4 rounded-lg mb-6 ${
+              className={`p-3 rounded-lg mb-5 text-sm ${
                 videoUpdate.sensitivityStatus === "safe"
-                  ? "bg-green-50 text-green-800"
-                  : "bg-red-50 text-red-800"
+                  ? "bg-green-50 text-green-700"
+                  : "bg-red-50 text-red-700"
               }`}
             >
               <div className="flex items-center gap-2">
                 {videoUpdate.sensitivityStatus === "safe" ? (
-                  <CheckCircle className="w-5 h-5" />
+                  <CheckCircle className="w-4 h-4" />
                 ) : (
-                  <AlertCircle className="w-5 h-5" />
+                  <AlertCircle className="w-4 h-4" />
                 )}
                 <span className="font-medium">
-                  Sensitivity Analysis:{" "}
                   {videoUpdate.sensitivityStatus === "safe"
                     ? "Content is Safe"
                     : "Content Flagged"}
                 </span>
               </div>
               {videoUpdate.sensitivityReasons?.length > 0 && (
-                <ul className="mt-2 ml-7 list-disc text-sm">
+                <ul className="mt-2 ml-6 list-disc text-xs">
                   {videoUpdate.sensitivityReasons.map((reason, i) => (
                     <li key={i}>{reason}</li>
                   ))}
@@ -224,7 +223,7 @@ const Upload = () => {
             </div>
           )}
 
-          <div className="flex gap-4">
+          <div className="flex gap-3">
             <Button
               onClick={() => navigate("/videos")}
               variant="secondary"
@@ -255,7 +254,7 @@ const Upload = () => {
                 visibility: "private",
               });
             }}
-            className="w-full mt-4 text-center text-primary-600 hover:text-primary-700 text-sm font-medium"
+            className="w-full mt-3 text-center text-zinc-600 hover:text-zinc-900 text-sm"
           >
             Upload Another Video
           </button>
@@ -264,10 +263,10 @@ const Upload = () => {
 
       {/* Upload form */}
       {!uploadedVideo && (
-        <div className="bg-white rounded-xl p-8 shadow-sm border border-gray-200">
+        <div className="bg-white rounded-lg p-6 shadow-soft border border-zinc-200">
           {error && (
-            <div className="mb-6 p-4 bg-red-50 border border-red-200 text-red-600 rounded-lg text-sm flex items-center gap-2">
-              <AlertCircle className="w-5 h-5 flex-shrink-0" />
+            <div className="mb-5 p-3 bg-red-50 border border-red-100 text-red-600 rounded-lg text-sm flex items-center gap-2">
+              <AlertCircle className="w-4 h-4 flex-shrink-0" />
               {error}
             </div>
           )}
@@ -275,25 +274,25 @@ const Upload = () => {
           {/* Dropzone */}
           <div
             {...getRootProps()}
-            className={`border-2 border-dashed rounded-xl p-8 text-center cursor-pointer transition-all duration-200 ${
+            className={`border-2 border-dashed rounded-lg p-6 text-center cursor-pointer transition-all duration-150 ${
               isDragActive
-                ? "border-primary-500 bg-primary-50"
+                ? "border-zinc-400 bg-zinc-50"
                 : file
-                ? "border-green-500 bg-green-50"
-                : "border-gray-300 hover:border-primary-400 hover:bg-gray-50"
+                ? "border-green-400 bg-green-50"
+                : "border-zinc-200 hover:border-zinc-300 hover:bg-zinc-50"
             }`}
           >
             <input {...getInputProps()} />
 
             {file ? (
-              <div className="space-y-4" onClick={(e) => e.stopPropagation()}>
+              <div className="space-y-3" onClick={(e) => e.stopPropagation()}>
                 {/* Video Preview */}
                 {videoPreviewUrl && (
-                  <div className="relative rounded-lg overflow-hidden bg-black max-w-md mx-auto">
+                  <div className="relative rounded-lg overflow-hidden bg-black max-w-sm mx-auto">
                     <video
                       src={videoPreviewUrl}
                       controls
-                      className="w-full max-h-48 object-contain"
+                      className="w-full max-h-40 object-contain"
                       preload="metadata"
                     >
                       Your browser does not support video preview.
@@ -302,13 +301,13 @@ const Upload = () => {
                 )}
 
                 {/* File Info */}
-                <div className="flex items-center justify-center gap-4">
-                  <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center">
-                    <Film className="w-6 h-6 text-green-600" />
+                <div className="flex items-center justify-center gap-3">
+                  <div className="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center">
+                    <Film className="w-5 h-5 text-green-600" />
                   </div>
                   <div className="text-left">
-                    <p className="font-medium text-gray-900">{file.name}</p>
-                    <p className="text-sm text-gray-500">
+                    <p className="font-medium text-zinc-900 text-sm">{file.name}</p>
+                    <p className="text-xs text-zinc-500">
                       {formatFileSize(file.size)}
                     </p>
                   </div>
@@ -317,27 +316,27 @@ const Upload = () => {
                       e.stopPropagation();
                       removeFile();
                     }}
-                    className="p-2 hover:bg-gray-200 rounded-lg transition-colors"
+                    className="p-1.5 hover:bg-zinc-100 rounded transition-colors"
                     title="Remove video"
                   >
-                    <X className="w-5 h-5 text-gray-500" />
+                    <X className="w-4 h-4 text-zinc-400" />
                   </button>
                 </div>
 
-                <p className="text-sm text-green-600 font-medium">
+                <p className="text-xs text-green-600">
                   ✓ Video ready for upload
                 </p>
               </div>
             ) : (
               <>
-                <Cloud className="w-16 h-16 text-gray-400 mx-auto mb-4" />
-                <p className="text-lg font-medium text-gray-900 mb-2">
+                <Cloud className="w-12 h-12 text-zinc-300 mx-auto mb-3" />
+                <p className="text-sm font-medium text-zinc-900 mb-1">
                   {isDragActive
                     ? "Drop your video here"
                     : "Drag & drop your video"}
                 </p>
-                <p className="text-gray-500 mb-4">or click to browse files</p>
-                <p className="text-sm text-gray-400">
+                <p className="text-zinc-500 text-sm mb-3">or click to browse files</p>
+                <p className="text-xs text-zinc-400">
                   MP4, WebM, MOV, AVI, MKV • Max 500MB
                 </p>
               </>
@@ -358,11 +357,11 @@ const Upload = () => {
 
           {/* Metadata form */}
           {file && !uploading && (
-            <div className="mt-8 space-y-6">
+            <div className="mt-6 space-y-4">
               <div>
                 <label
                   htmlFor="title"
-                  className="block text-sm font-medium text-gray-700 mb-2"
+                  className="block text-xs font-medium text-zinc-600 mb-1.5"
                 >
                   Title *
                 </label>
@@ -381,7 +380,7 @@ const Upload = () => {
               <div>
                 <label
                   htmlFor="description"
-                  className="block text-sm font-medium text-gray-700 mb-2"
+                  className="block text-xs font-medium text-zinc-600 mb-1.5"
                 >
                   Description
                 </label>
@@ -390,9 +389,9 @@ const Upload = () => {
                   name="description"
                   value={metadata.description}
                   onChange={handleMetadataChange}
-                  className="input min-h-[100px]"
+                  className="input min-h-[80px]"
                   placeholder="Enter video description"
-                  rows={4}
+                  rows={3}
                 />
               </div>
 
@@ -400,7 +399,7 @@ const Upload = () => {
                 <div>
                   <label
                     htmlFor="category"
-                    className="block text-sm font-medium text-gray-700 mb-2"
+                    className="block text-xs font-medium text-zinc-600 mb-1.5"
                   >
                     Category
                   </label>
@@ -423,7 +422,7 @@ const Upload = () => {
                 <div>
                   <label
                     htmlFor="visibility"
-                    className="block text-sm font-medium text-gray-700 mb-2"
+                    className="block text-xs font-medium text-zinc-600 mb-1.5"
                   >
                     Visibility
                   </label>
@@ -444,7 +443,7 @@ const Upload = () => {
               <div>
                 <label
                   htmlFor="tags"
-                  className="block text-sm font-medium text-gray-700 mb-2"
+                  className="block text-xs font-medium text-zinc-600 mb-1.5"
                 >
                   Tags
                 </label>
@@ -462,7 +461,6 @@ const Upload = () => {
               <Button
                 onClick={handleUpload}
                 fullWidth
-                size="lg"
                 icon={UploadIcon}
                 loading={uploading}
               >

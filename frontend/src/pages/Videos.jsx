@@ -146,31 +146,31 @@ const Videos = () => {
   return (
     <div>
       {/* Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-5">
         <div>
-          <h1 className="text-3xl font-bold text-gray-900">Videos</h1>
-          <p className="text-gray-500 mt-1">
+          <h1 className="text-2xl font-semibold text-zinc-900">Videos</h1>
+          <p className="text-zinc-500 text-sm mt-0.5">
             Manage and view your video library
           </p>
         </div>
 
-        <Button onClick={fetchVideos} variant="secondary" icon={RefreshCw}>
+        <Button onClick={fetchVideos} variant="secondary" icon={RefreshCw} size="sm">
           Refresh
         </Button>
       </div>
 
       {/* Search and filters bar */}
-      <div className="bg-white rounded-xl p-4 shadow-sm border border-gray-200 mb-6">
-        <div className="flex flex-col sm:flex-row gap-4">
+      <div className="bg-white rounded-lg p-3 shadow-soft border border-zinc-200 mb-5">
+        <div className="flex flex-col sm:flex-row gap-3">
           {/* Search */}
           <div className="flex-1 relative">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-400" />
             <input
               type="text"
               placeholder="Search videos..."
               value={filters.search}
               onChange={handleSearch}
-              className="input pl-10"
+              className="input pl-10 text-sm"
             />
           </div>
 
@@ -179,51 +179,52 @@ const Videos = () => {
             variant={showFilters ? "primary" : "secondary"}
             icon={SlidersHorizontal}
             onClick={() => setShowFilters(!showFilters)}
+            size="sm"
           >
             Filters
             {activeFilterCount > 0 && (
-              <span className="ml-2 bg-primary-600 text-white px-2 py-0.5 rounded-full text-xs">
+              <span className="ml-1.5 bg-white/20 px-1.5 py-0.5 rounded text-xs">
                 {activeFilterCount}
               </span>
             )}
           </Button>
 
           {/* View mode toggle */}
-          <div className="flex border border-gray-200 rounded-lg overflow-hidden">
+          <div className="flex border border-zinc-200 rounded-lg overflow-hidden">
             <button
               onClick={() => setViewMode("grid")}
               className={`p-2 ${
                 viewMode === "grid"
-                  ? "bg-primary-50 text-primary-600"
-                  : "bg-white text-gray-500 hover:bg-gray-50"
+                  ? "bg-zinc-100 text-zinc-900"
+                  : "bg-white text-zinc-400 hover:bg-zinc-50"
               }`}
             >
-              <Grid className="w-5 h-5" />
+              <Grid className="w-4 h-4" />
             </button>
             <button
               onClick={() => setViewMode("list")}
               className={`p-2 ${
                 viewMode === "list"
-                  ? "bg-primary-50 text-primary-600"
-                  : "bg-white text-gray-500 hover:bg-gray-50"
+                  ? "bg-zinc-100 text-zinc-900"
+                  : "bg-white text-zinc-400 hover:bg-zinc-50"
               }`}
             >
-              <List className="w-5 h-5" />
+              <List className="w-4 h-4" />
             </button>
           </div>
         </div>
 
         {/* Expanded filters */}
         {showFilters && (
-          <div className="mt-4 pt-4 border-t border-gray-200 grid grid-cols-2 sm:grid-cols-4 gap-4">
+          <div className="mt-3 pt-3 border-t border-zinc-100 grid grid-cols-2 sm:grid-cols-4 gap-3">
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
+              <label className="block text-xs font-medium text-zinc-600 mb-1">
                 Status
               </label>
               <select
                 value={filters.status}
                 onChange={(e) => handleFilterChange("status", e.target.value)}
-                className="input"
+                className="input text-sm"
               >
                 <option value="">All</option>
                 <option value="completed">Completed</option>
@@ -233,7 +234,7 @@ const Videos = () => {
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
+              <label className="block text-xs font-medium text-zinc-600 mb-1">
                 Sensitivity
               </label>
               <select
@@ -241,7 +242,7 @@ const Videos = () => {
                 onChange={(e) =>
                   handleFilterChange("sensitivityStatus", e.target.value)
                 }
-                className="input"
+                className="input text-sm"
               >
                 <option value="">All</option>
                 <option value="safe">Safe</option>
@@ -251,13 +252,13 @@ const Videos = () => {
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
+              <label className="block text-xs font-medium text-zinc-600 mb-1">
                 Category
               </label>
               <select
                 value={filters.category}
                 onChange={(e) => handleFilterChange("category", e.target.value)}
-                className="input"
+                className="input text-sm"
               >
                 <option value="">All</option>
                 <option value="education">Education</option>
@@ -268,7 +269,7 @@ const Videos = () => {
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
+              <label className="block text-xs font-medium text-zinc-600 mb-1">
                 Sort by
               </label>
               <select
@@ -278,7 +279,7 @@ const Videos = () => {
                   handleFilterChange("sortBy", sortBy);
                   handleFilterChange("sortOrder", sortOrder);
                 }}
-                className="input"
+                className="input text-sm"
               >
                 <option value="createdAt-desc">Newest first</option>
                 <option value="createdAt-asc">Oldest first</option>
@@ -291,7 +292,7 @@ const Videos = () => {
             <div className="col-span-2 sm:col-span-4">
               <button
                 onClick={clearFilters}
-                className="text-sm text-primary-600 hover:text-primary-700 font-medium"
+                className="text-xs text-zinc-500 hover:text-zinc-700"
               >
                 Clear all filters
               </button>
@@ -302,16 +303,16 @@ const Videos = () => {
 
       {/* Videos grid */}
       {loading ? (
-        <div className="flex items-center justify-center py-20">
-          <div className="w-8 h-8 border-4 border-primary-500 border-t-transparent rounded-full spinner"></div>
+        <div className="flex items-center justify-center py-16">
+          <div className="w-6 h-6 border-2 border-zinc-300 border-t-zinc-600 rounded-full spinner"></div>
         </div>
       ) : videos.length > 0 ? (
         <>
           <div
             className={
               viewMode === "grid"
-                ? "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"
-                : "space-y-4"
+                ? "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4"
+                : "space-y-3"
             }
           >
             {videos.map((video) => {
@@ -332,7 +333,7 @@ const Videos = () => {
 
           {/* Pagination */}
           {pagination.pages > 1 && (
-            <div className="mt-8 flex items-center justify-center gap-2">
+            <div className="mt-6 flex items-center justify-center gap-1.5">
               <Button
                 variant="secondary"
                 size="sm"
@@ -355,10 +356,10 @@ const Videos = () => {
                         onClick={() =>
                           setPagination((prev) => ({ ...prev, page: pageNum }))
                         }
-                        className={`w-8 h-8 rounded-lg text-sm font-medium transition-colors ${
+                        className={`w-7 h-7 rounded text-xs font-medium transition-colors ${
                           pagination.page === pageNum
-                            ? "bg-primary-600 text-white"
-                            : "bg-gray-100 text-gray-600 hover:bg-gray-200"
+                            ? "bg-zinc-900 text-white"
+                            : "bg-zinc-100 text-zinc-600 hover:bg-zinc-200"
                         }`}
                       >
                         {pageNum}
@@ -382,12 +383,12 @@ const Videos = () => {
           )}
         </>
       ) : (
-        <div className="bg-white rounded-xl p-12 text-center border border-gray-200">
-          <Video className="w-16 h-16 text-gray-300 mx-auto mb-4" />
-          <h3 className="text-lg font-medium text-gray-900 mb-2">
+        <div className="bg-white rounded-lg p-10 text-center border border-zinc-200">
+          <Video className="w-12 h-12 text-zinc-200 mx-auto mb-3" />
+          <h3 className="text-sm font-medium text-zinc-900 mb-1">
             No videos found
           </h3>
-          <p className="text-gray-500">
+          <p className="text-zinc-500 text-sm">
             {filters.search || activeFilterCount > 0
               ? "Try adjusting your search or filters"
               : "Upload your first video to get started"}
@@ -402,9 +403,9 @@ const Videos = () => {
         title="Edit Video"
       >
         {editingVideo && (
-          <div className="p-6 space-y-4">
+          <div className="p-5 space-y-4">
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-xs font-medium text-zinc-600 mb-1.5">
                 Title
               </label>
               <input
@@ -418,7 +419,7 @@ const Videos = () => {
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-xs font-medium text-zinc-600 mb-1.5">
                 Description
               </label>
               <textarea
@@ -429,13 +430,13 @@ const Videos = () => {
                     description: e.target.value,
                   })
                 }
-                className="input min-h-[100px]"
-                rows={4}
+                className="input min-h-[80px]"
+                rows={3}
               />
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-xs font-medium text-zinc-600 mb-1.5">
                 Category
               </label>
               <select
@@ -454,7 +455,7 @@ const Videos = () => {
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-xs font-medium text-zinc-600 mb-1.5">
                 Visibility
               </label>
               <select
@@ -473,7 +474,7 @@ const Videos = () => {
               </select>
             </div>
 
-            <div className="flex gap-4 pt-4">
+            <div className="flex gap-3 pt-3">
               <Button
                 variant="secondary"
                 onClick={() => setEditModal(false)}
@@ -496,12 +497,12 @@ const Videos = () => {
         title="Delete Video"
         size="sm"
       >
-        <div className="p-6">
-          <p className="text-gray-600 mb-6">
+        <div className="p-5">
+          <p className="text-zinc-600 text-sm mb-5">
             Are you sure you want to delete this video? This action cannot be
             undone.
           </p>
-          <div className="flex gap-4">
+          <div className="flex gap-3">
             <Button
               variant="secondary"
               onClick={() => setDeleteModal(false)}

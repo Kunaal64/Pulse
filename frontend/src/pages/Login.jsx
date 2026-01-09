@@ -38,38 +38,38 @@ const Login = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-primary-50 via-white to-primary-100 flex items-center justify-center p-4">
-      <div className="w-full max-w-md">
+    <div className="min-h-screen bg-zinc-50 flex items-center justify-center p-4">
+      <div className="w-full max-w-sm">
         {/* Logo */}
         <div className="text-center mb-8">
-          <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-primary-500 to-primary-700 rounded-2xl mb-4">
-            <span className="text-white font-bold text-3xl">P</span>
+          <div className="inline-flex items-center justify-center w-12 h-12 bg-zinc-900 rounded-xl mb-4">
+            <span className="text-white font-semibold text-xl">P</span>
           </div>
-          <h1 className="text-3xl font-bold text-gray-900">Welcome back</h1>
-          <p className="text-gray-500 mt-2">
-            Sign in to your Pulse Video account
+          <h1 className="text-2xl font-semibold text-zinc-900">Welcome back</h1>
+          <p className="text-zinc-500 mt-1 text-sm">
+            Sign in to your account
           </p>
         </div>
 
         {/* Login form */}
-        <div className="bg-white rounded-2xl shadow-xl p-8">
+        <div className="bg-white rounded-xl border border-zinc-200 p-6">
           {error && (
-            <div className="mb-6 p-4 bg-red-50 border border-red-200 text-red-600 rounded-lg text-sm">
+            <div className="mb-4 p-3 bg-red-50 border border-red-100 text-red-600 rounded-lg text-sm">
               {error}
             </div>
           )}
 
-          <form onSubmit={handleSubmit} className="space-y-5">
+          <form onSubmit={handleSubmit} className="space-y-4">
             {/* Email */}
             <div>
               <label
                 htmlFor="email"
-                className="block text-sm font-medium text-gray-700 mb-2"
+                className="block text-sm font-medium text-zinc-700 mb-1.5"
               >
-                Email address
+                Email
               </label>
               <div className="relative">
-                <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+                <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-400" />
                 <input
                   type="email"
                   id="email"
@@ -87,12 +87,12 @@ const Login = () => {
             <div>
               <label
                 htmlFor="password"
-                className="block text-sm font-medium text-gray-700 mb-2"
+                className="block text-sm font-medium text-zinc-700 mb-1.5"
               >
                 Password
               </label>
               <div className="relative">
-                <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+                <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-400" />
                 <input
                   type={showPassword ? "text" : "password"}
                   id="password"
@@ -106,42 +106,35 @@ const Login = () => {
                 <button
                   type="button"
                   onClick={() => setShowPassword(!showPassword)}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-zinc-400 hover:text-zinc-600"
                 >
                   {showPassword ? (
-                    <EyeOff className="w-5 h-5" />
+                    <EyeOff className="w-4 h-4" />
                   ) : (
-                    <Eye className="w-5 h-5" />
+                    <Eye className="w-4 h-4" />
                   )}
                 </button>
               </div>
             </div>
 
             {/* Submit */}
-            <Button type="submit" fullWidth loading={loading} size="lg">
+            <Button type="submit" fullWidth loading={loading} className="mt-2">
               Sign in
             </Button>
           </form>
 
           {/* Register link */}
-          <div className="mt-6 text-center">
-            <p className="text-gray-500">
+          <div className="mt-4 text-center">
+            <p className="text-sm text-zinc-500">
               Don't have an account?{" "}
               <Link
                 to="/register"
-                className="text-primary-600 hover:text-primary-700 font-medium"
+                className="text-zinc-900 hover:underline font-medium"
               >
                 Sign up
               </Link>
             </p>
           </div>
-        </div>
-
-        {/* Demo credentials */}
-        <div className="mt-6 p-4 bg-white/50 rounded-xl text-center">
-          <p className="text-sm text-gray-500">
-            Demo: Create an account or use the registration page
-          </p>
         </div>
       </div>
     </div>

@@ -22,105 +22,89 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="bg-white shadow-sm border-b border-gray-200 fixed top-0 left-0 right-0 z-50">
+    <nav className="bg-white border-b border-zinc-200 fixed top-0 left-0 right-0 z-50">
       <div className="px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between h-16">
+        <div className="flex justify-between h-14">
           {/* Logo */}
           <div className="flex items-center">
-            <Link to="/dashboard" className="flex items-center gap-2">
-              <div className="w-10 h-10 bg-gradient-to-br from-primary-500 to-primary-700 rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold text-xl">P</span>
+            <Link to="/dashboard" className="flex items-center gap-2.5">
+              <div className="w-8 h-8 bg-zinc-900 rounded-lg flex items-center justify-center">
+                <span className="text-white font-semibold text-base">P</span>
               </div>
-              <span className="text-xl font-bold text-gray-900">
-                Pulse Video
+              <span className="text-lg font-semibold text-zinc-900">
+                Pulse
               </span>
             </Link>
           </div>
 
           {/* Right side */}
-          <div className="flex items-center gap-4">
-            {/* Connection status */}
-            <div className="flex items-center gap-2 text-sm">
+          <div className="flex items-center gap-2">
+            {/* Connection status - subtle indicator */}
+            <div className="flex items-center gap-1.5 px-2 py-1 rounded-md">
               {isConnected ? (
-                <>
-                  <Wifi className="w-4 h-4 text-green-500" />
-                  <span className="text-green-600 hidden sm:inline">
-                    Connected
-                  </span>
-                </>
+                <div className="w-2 h-2 bg-emerald-500 rounded-full" title="Connected" />
               ) : (
-                <>
-                  <WifiOff className="w-4 h-4 text-red-500" />
-                  <span className="text-red-600 hidden sm:inline">
-                    Disconnected
-                  </span>
-                </>
+                <div className="w-2 h-2 bg-red-500 rounded-full" title="Disconnected" />
               )}
             </div>
 
             {/* Notifications */}
-            <button className="p-2 text-gray-500 hover:text-gray-700 hover:bg-gray-100 rounded-lg relative">
+            <button className="p-2 text-zinc-500 hover:text-zinc-700 hover:bg-zinc-100 rounded-lg relative transition-colors">
               <Bell className="w-5 h-5" />
-              <span className="absolute top-1 right-1 w-2 h-2 bg-red-500 rounded-full"></span>
+              <span className="absolute top-1.5 right-1.5 w-1.5 h-1.5 bg-red-500 rounded-full"></span>
             </button>
 
             {/* User dropdown */}
             <div className="relative">
               <button
                 onClick={() => setShowDropdown(!showDropdown)}
-                className="flex items-center gap-2 p-2 hover:bg-gray-100 rounded-lg transition-colors"
+                className="flex items-center gap-2 p-1.5 hover:bg-zinc-100 rounded-lg transition-colors"
               >
-                <div className="w-8 h-8 bg-primary-100 rounded-full flex items-center justify-center">
-                  <span className="text-primary-700 font-medium text-sm">
+                <div className="w-8 h-8 bg-zinc-100 rounded-full flex items-center justify-center">
+                  <span className="text-zinc-700 font-medium text-sm">
                     {user?.name?.charAt(0).toUpperCase()}
                   </span>
                 </div>
-                <div className="hidden sm:block text-left">
-                  <p className="text-sm font-medium text-gray-900">
-                    {user?.name}
-                  </p>
-                  <p className="text-xs text-gray-500 capitalize">
-                    {user?.role}
-                  </p>
-                </div>
-                <ChevronDown className="w-4 h-4 text-gray-500" />
+                <ChevronDown className="w-4 h-4 text-zinc-400" />
               </button>
 
               {/* Dropdown menu */}
               {showDropdown && (
-                <div className="absolute right-0 mt-2 w-56 bg-white rounded-lg shadow-lg border border-gray-200 py-1 z-50">
-                  <div className="px-4 py-3 border-b border-gray-100">
-                    <p className="text-sm font-medium text-gray-900">
+                <div className="absolute right-0 mt-1 w-56 bg-white rounded-lg shadow-medium border border-zinc-200 py-1 z-50">
+                  <div className="px-3 py-2.5 border-b border-zinc-100">
+                    <p className="text-sm font-medium text-zinc-900">
                       {user?.name}
                     </p>
-                    <p className="text-xs text-gray-500">{user?.email}</p>
+                    <p className="text-xs text-zinc-500">{user?.email}</p>
                   </div>
 
-                  <Link
-                    to="/settings"
-                    onClick={() => setShowDropdown(false)}
-                    className="flex items-center gap-2 px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                  >
-                    <User className="w-4 h-4" />
-                    Profile
-                  </Link>
+                  <div className="py-1">
+                    <Link
+                      to="/settings"
+                      onClick={() => setShowDropdown(false)}
+                      className="flex items-center gap-2.5 px-3 py-2 text-sm text-zinc-700 hover:bg-zinc-50 transition-colors"
+                    >
+                      <User className="w-4 h-4" />
+                      Profile
+                    </Link>
 
-                  <Link
-                    to="/settings"
-                    onClick={() => setShowDropdown(false)}
-                    className="flex items-center gap-2 px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                  >
-                    <Settings className="w-4 h-4" />
-                    Settings
-                  </Link>
+                    <Link
+                      to="/settings"
+                      onClick={() => setShowDropdown(false)}
+                      className="flex items-center gap-2.5 px-3 py-2 text-sm text-zinc-700 hover:bg-zinc-50 transition-colors"
+                    >
+                      <Settings className="w-4 h-4" />
+                      Settings
+                    </Link>
+                  </div>
 
-                  <div className="border-t border-gray-100 mt-1">
+                  <div className="border-t border-zinc-100">
                     <button
                       onClick={handleLogout}
-                      className="flex items-center gap-2 px-4 py-2 text-sm text-red-600 hover:bg-red-50 w-full"
+                      className="flex items-center gap-2.5 px-3 py-2 text-sm text-red-600 hover:bg-red-50 w-full transition-colors"
                     >
                       <LogOut className="w-4 h-4" />
-                      Logout
+                      Sign out
                     </button>
                   </div>
                 </div>

@@ -52,9 +52,9 @@ const VideoCard = ({
   const canPlay = video.status === "completed";
 
   return (
-    <div className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden card-hover fade-in">
+    <div className="bg-white rounded-lg border border-zinc-200 overflow-hidden card-hover fade-in">
       {/* Thumbnail */}
-      <div className="relative aspect-video bg-gray-100">
+      <div className="relative aspect-video bg-zinc-100">
         {video.thumbnail && !imageError ? (
           <img
             src={`${import.meta.env.VITE_API_URL}/videos/${
@@ -65,14 +65,14 @@ const VideoCard = ({
             onError={() => setImageError(true)}
           />
         ) : (
-          <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-gray-100 to-gray-200">
-            <Play className="w-12 h-12 text-gray-400" />
+          <div className="w-full h-full flex items-center justify-center bg-zinc-100">
+            <Play className="w-10 h-10 text-zinc-300" />
           </div>
         )}
 
         {/* Duration badge */}
         {video.duration && (
-          <div className="absolute bottom-2 right-2 bg-black/75 text-white text-xs px-2 py-1 rounded">
+          <div className="absolute bottom-2 right-2 bg-black/80 text-white text-xs px-1.5 py-0.5 rounded font-medium">
             {formatDuration(video.duration)}
           </div>
         )}
@@ -81,20 +81,20 @@ const VideoCard = ({
         {canPlay && (
           <Link
             to={`/videos/${video._id}`}
-            className="absolute inset-0 flex items-center justify-center bg-black/0 hover:bg-black/40 transition-all duration-200 group"
+            className="absolute inset-0 flex items-center justify-center bg-black/0 hover:bg-black/30 transition-all duration-150 group"
           >
-            <div className="w-16 h-16 bg-white/90 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-200 shadow-lg">
-              <Play className="w-8 h-8 text-primary-600 ml-1" />
+            <div className="w-12 h-12 bg-white/90 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-150 shadow-md">
+              <Play className="w-6 h-6 text-zinc-900 ml-0.5" />
             </div>
           </Link>
         )}
 
         {/* Processing overlay */}
         {isProcessing && (
-          <div className="absolute inset-0 bg-black/60 flex items-center justify-center">
+          <div className="absolute inset-0 bg-black/50 flex items-center justify-center">
             <div className="text-center text-white p-4">
-              <div className="w-8 h-8 border-2 border-white border-t-transparent rounded-full spinner mx-auto mb-2" />
-              <p className="text-sm">
+              <div className="w-6 h-6 border-2 border-white border-t-transparent rounded-full spinner mx-auto mb-2" />
+              <p className="text-xs">
                 {video.processingMessage || "Processing..."}
               </p>
             </div>
@@ -103,14 +103,14 @@ const VideoCard = ({
       </div>
 
       {/* Content */}
-      <div className="p-4">
+      <div className="p-3">
         {/* Title and menu */}
         <div className="flex justify-between items-start gap-2 mb-2">
-          <h3 className="font-semibold text-gray-900 line-clamp-2 flex-1">
+          <h3 className="font-medium text-zinc-900 text-sm line-clamp-2 flex-1">
             {canPlay ? (
               <Link
                 to={`/videos/${video._id}`}
-                className="hover:text-primary-600 transition-colors"
+                className="hover:text-zinc-600 transition-colors"
               >
                 {video.title}
               </Link>
@@ -122,9 +122,9 @@ const VideoCard = ({
           <div className="relative">
             <button
               onClick={() => setShowMenu(!showMenu)}
-              className="p-1 hover:bg-gray-100 rounded-lg transition-colors"
+              className="p-1 hover:bg-zinc-100 rounded transition-colors"
             >
-              <MoreVertical className="w-5 h-5 text-gray-500" />
+              <MoreVertical className="w-4 h-4 text-zinc-400" />
             </button>
 
             {showMenu && (
@@ -133,14 +133,14 @@ const VideoCard = ({
                   className="fixed inset-0 z-10"
                   onClick={() => setShowMenu(false)}
                 />
-                <div className="absolute right-0 top-8 bg-white rounded-lg shadow-lg border border-gray-200 py-1 z-20 min-w-[140px]">
+                <div className="absolute right-0 top-7 bg-white rounded-lg shadow-medium border border-zinc-200 py-1 z-20 min-w-[120px]">
                   {canPlay && (
                     <Link
                       to={`/videos/${video._id}`}
-                      className="flex items-center gap-2 px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                      className="flex items-center gap-2 px-3 py-1.5 text-sm text-zinc-700 hover:bg-zinc-50"
                       onClick={() => setShowMenu(false)}
                     >
-                      <Eye className="w-4 h-4" />
+                      <Eye className="w-3.5 h-3.5" />
                       Watch
                     </Link>
                   )}
@@ -150,9 +150,9 @@ const VideoCard = ({
                         onEdit(video);
                         setShowMenu(false);
                       }}
-                      className="flex items-center gap-2 px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 w-full"
+                      className="flex items-center gap-2 px-3 py-1.5 text-sm text-zinc-700 hover:bg-zinc-50 w-full"
                     >
-                      <Edit className="w-4 h-4" />
+                      <Edit className="w-3.5 h-3.5" />
                       Edit
                     </button>
                   )}
@@ -162,9 +162,9 @@ const VideoCard = ({
                         onDelete(video._id);
                         setShowMenu(false);
                       }}
-                      className="flex items-center gap-2 px-4 py-2 text-sm text-red-600 hover:bg-red-50 w-full"
+                      className="flex items-center gap-2 px-3 py-1.5 text-sm text-red-600 hover:bg-red-50 w-full"
                     >
-                      <Trash2 className="w-4 h-4" />
+                      <Trash2 className="w-3.5 h-3.5" />
                       Delete
                     </button>
                   )}
@@ -175,7 +175,7 @@ const VideoCard = ({
         </div>
 
         {/* Status badges */}
-        <div className="flex flex-wrap gap-2 mb-3">
+        <div className="flex flex-wrap gap-1.5 mb-2">
           <StatusBadge status={video.status} size="sm" />
           {video.sensitivityStatus && video.sensitivityStatus !== "pending" && (
             <StatusBadge status={video.sensitivityStatus} size="sm" />
@@ -184,7 +184,7 @@ const VideoCard = ({
 
         {/* Progress bar for processing videos */}
         {(showProgress || isProcessing) && (
-          <div className="mb-3">
+          <div className="mb-2">
             <ProgressBar
               progress={progress || video.processingProgress || 0}
               message={progressMessage || video.processingMessage}
@@ -195,19 +195,11 @@ const VideoCard = ({
         )}
 
         {/* Meta info */}
-        <div className="flex items-center justify-between text-xs text-gray-500">
-          <div className="flex items-center gap-3">
-            <span className="flex items-center gap-1">
-              <Clock className="w-3 h-3" />
-              {formatDate(video.createdAt)}
-            </span>
-            <span className="flex items-center gap-1">
-              <HardDrive className="w-3 h-3" />
-              {formatSize(video.size)}
-            </span>
-          </div>
+        <div className="flex items-center gap-3 text-xs text-zinc-400">
+          <span>{formatDate(video.createdAt)}</span>
+          <span>{formatSize(video.size)}</span>
           {video.views > 0 && (
-            <span className="flex items-center gap-1">
+            <span className="flex items-center gap-0.5">
               <Eye className="w-3 h-3" />
               {video.views}
             </span>
